@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Dojo Activity Center</h1>
+<div>
+    <a href="/ActivityList">ActivityList</a> |<a href="/logout">log off</a>
+</div>
+<h1>Event Coordinator : @ViewBag.ActivityById.User.FirstName</h1>
+
+<h4>Description:</h4>
+<p>@ViewBag.ActivityById.Description</p>
+<div>
+<h4>Participants</h4>
+    <ul>
+        @foreach(var partici in @ViewBag.ActivityById.Participants){
+            <li>@partici.User.FirstName</li>
+        }
+    </ul>
+</div>
+<div>
+    @if(ViewBag.ShowJoin == true){
+        @if(ViewBag.ActivityById.UserId != ViewBag.MyUser.UserId){
+        <a href="/Join/@ViewBag.ActivityById.ActivityId">Join</a>
+        }
+    }
+</div>
+

@@ -1,0 +1,65 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container col-lg-6">
+    <h1>Register</h1> 
+    <form action="Register" method="post">
+        <div class="form-group">
+            <label for="FirstName">First Name</label>
+            <input type="text" class="form-control" name="FirstName" id="FirstName">
+        </div>
+        <div class="form-group">
+            <label for="LastName">Last Name</label>
+            <input type="text" class="form-control" name="LastName" id="LastName">
+        </div>
+        <div class="form-group">
+            <label for="Email">Email address</label>
+            <input type="email" class="form-control" name="Email" id="Email">
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" class="form-control" name="Password" id="Password">
+        </div>
+        <div class="form-group">
+            <label for="ConfirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword">
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Register">
+        </div>
+    </form>
+</div>
+
+<div class="container col-lg-6">
+    <h1>Login</h1>
+    <form action="Login" method="post">
+        <div class="form-group">
+            <label for="Email">Email address</label>
+            <input type="email" class="form-control" name="Email" id="Email">
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" class="form-control" name="Password" id="Password">
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Login">
+        </div>
+    </form>
+    @ViewBag.LoginErrors
+</div>
+
+<div class="container col-lg-8">
+    @{
+        foreach(var error in ViewBag.RegisterErrors)
+        {
+            //If there are any errors for a field...
+            if(@error.Errors.Count > 0)
+            {
+                // We show the first error for that field
+                <p>@error.Errors[0].ErrorMessage</p>
+            }
+        }
+    }
+</div>
+
+

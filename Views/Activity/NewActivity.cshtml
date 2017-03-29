@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>Dojo Activity Center</h1>
+<div>
+    <a href="/ActivityList">ActivityList</a> |<a href="/logout">log off</a>
+</div>
+
+<div class="col-sm-5">
+<form action="/NewActivity" method="POST">
+    <div class="form-group">
+            <label for="Title">Title</label>
+            <input type="text" class="form-control" name="Title" id="Title">
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" class="form-control" name="Description" id="Description">
+    </div>
+    <div class="form-group">
+        <label for="DateOfActivity">Date</label>
+        <input type="date" class="form-control" name="DateOfActivity" id="DateOfActivity">
+    </div>
+    <div class="form-group">
+        <label for="TimeOfActivity">TimeOfActivity</label>
+        <input type="text" class="form-control" name="TimeOfActivity" id="TimeOfActivity">
+    </div>
+     <div class="form-group">
+        <label for="Duration">Duration</label>
+        <input type="number" class="form-control" name="Duration" id="Duration">
+        <select name="durationRange" class="form-control">
+            <option value="Hours">Hours</option>
+            <option value="Minutes">Minutes</option>
+            <option value="Days">Days</option>
+        </select>
+    </div>
+    <input type="submit" value="Add Activity" class="btn btn-primary">
+</form>
+</div>
+
+<div class="container col-lg-8">
+    @{
+        foreach(var error in ViewBag.ActivityErrors)
+        {
+            //If there are any errors for a field...
+            if(@error.Errors.Count > 0)
+            {
+                // We show the first error for that field
+                <p>@error.Errors[0].ErrorMessage</p>
+            }
+        }
+    }
+</div>
